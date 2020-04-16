@@ -2,8 +2,14 @@ import React,{ Component } from 'react';
 import logo from './assets/img/logo.svg';
 import './App.css';
 import axios from 'axios';
+// const passwordHash = require('password-hash');
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class App extends Component{
+  msg='';
+  notify = (msg) => toast(msg);
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -12,24 +18,25 @@ export default class App extends Component{
       comment:''
     };
   }
+  
 
   mySubmitHandler = (event) => {
     event.preventDefault();
     const newpassword = this.state.newPassword;
     if (this.state.newPassword !== this.state.confirmedPass) {
-        alert("Passwords don't match");
+      this.notify("Passwords don't match");
       }
     else if (this.state.newPassword.length < 8) {
-      alert("Your password must be at least 8 characters")
+      this.notify("Your password must be at least 8 characters");
     }
     else if (this.state.newPassword.search(/[a-z]/i) < 0) {
-      alert("Your password must contain at least one letter.");
+      this.notify("Your password must contain at least one letter.");
     } 
     else if (this.state.newPassword.search(/[0-9]/) < 0) {
-      alert("Your password must contain at least one number."); 
+      this.notify("Your password must contain at least one number."); 
     }
     else if (this.state.newPassword.search(/[A-Z]/i) < 0) {
-      alert("Your password must contain at least one capital letter."); 
+      this.notify("Your password must contain at least one capital letter."); 
     }
     else{
       axios
@@ -82,9 +89,10 @@ export default class App extends Component{
                   <label htmlFor="inputPassword">تأكيد كلمة السر</label>
                 </div>
                 <button className="btn btn-lg  btn-block" 
-                  onClick={this.mySubmitHandler} 
+                  onClick={this.mySubmitHandler}
                   type="submit">تنفيذ
                 </button>
+                <ToastContainer />
               </form>
             </div>
           </div>
