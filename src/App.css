@@ -1,0 +1,101 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+  }
+  
+  @font-face {
+  font-family: "Cairo-Bold";
+  src: url("./css/fonts//Cairo-Bold.TTF");
+  }
+  @font-face {
+  font-family: "Cairo-Light";
+  src: url("./css/fonts/Cairo-Light.TTF");
+  } 
+      body {
+      background: #673ab7;
+      background: linear-gradient(to right, #673ab7, #8259cb);
+      width: 99%;
+      }
+  
+      .card-signin {
+      border: 0;
+      border-radius: 1rem;
+      box-shadow: 0 2rem 1rem 0 rgba(0, 0, 0, 0.1);
+      font-family: 'Cairo-Light';
+      }
+  
+      .logo{
+      margin-top:4rem ;
+      margin-right: 5rem;
+      opacity: 65%;
+      }
+      .logo img{
+      width:70%;
+      height: 70%;
+      }
+  
+      .card-signin .card-title {
+      margin-bottom: 2rem;
+      font-weight: 300;
+      font-size: 1.5rem;
+      font-family: 'Cairo-Bold';
+      }
+      .card-signin .card-body {
+      padding: 1rem;
+      }
+  
+      input[type="password"]:focus{
+          border-color: #673ab7;
+          outline: 0 none;    
+      }
+  
+      .form-signin .btn {
+      font-size: 90%;
+      border-radius: 5rem;
+      font-weight: bold;
+      padding: 1rem;
+      color:white;
+      transition: all 0.2s;
+      background-color: #673ab7;
+      font-family: 'Cairo-Bold';
+      }
+      .form-signin .btn:hover {
+      background-color: #8259cb;
+      }
+      .form-signin .btn:active {
+      background-color: #ffc107;
+      }
+  
+      .form-label-group {
+      position: relative;
+      margin-bottom: 1rem;
+      }
+      .form-label-group input {
+      height: auto;
+      border-radius: 2rem;
+      }
+  
+  /* the placeholder and input text design*/
+  
+      .form-label-group>input,
+      .form-label-group>label {
+      padding: var(--input-padding-y) var(--input-padding-x);
+      }
+      .form-label-group>label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      /* Override default `<label>` margin */
+      line-height: 1.5;
+      color: #495057;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      transition: all .1s ease-in-out;
+      }
+      .form-label-group input:not(:placeholder-shown)~label {
+      padding-top: calc(var(--input-padding-y) / 3);
+      padding-bottom: calc(var(--input-padding-y) / 3);
+      font-size: 12px;
+      color: #777;
+      }
