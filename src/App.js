@@ -2,9 +2,10 @@ import React,{ Component } from 'react';
 import logo from './assets/img/logo.svg';
 import './App.css';
 import axios from 'axios';
-// const passwordHash = require('password-hash');
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import queryString from 'query-string';
+// const passwordHash = require('password-hash');
 
 export default class App extends Component{
   msg='';
@@ -15,14 +16,17 @@ export default class App extends Component{
     this.state = {
       newPassword: '',
       confirmedPass: '',
-      comment:''
     };
   }
-  
 
   mySubmitHandler = (event) => {
     event.preventDefault();
     const newpassword = this.state.newPassword;
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const login_token = params.get('x-login-token');
+    console.log(login_token)
+
     if (this.state.newPassword !== this.state.confirmedPass) {
       this.notify("Passwords don't match");
       }
@@ -40,20 +44,22 @@ export default class App extends Component{
     }
     else{
       axios
-      .post('http://localhost:3000/api/signing/passengers/set-new-password', {newpassword}
-      //   , {headers: {
-      //     'authorization': 'x-login-token'
-      //   }
-      // }
-      )
+        .post('http://localhost:3000/api/signing/passengers/set-new-password/', {newpassword}, 
+           {headers: {
+            'x-login-token': login_token
+          }
+        }
+        )
         .then((res) => {
-          console.log(res);
-          console.log(res.data);
-        })
+          // console.log(res);
+          // console.log(res.data);
+          // let params = queryString.parse(res.data)
+          // console.log(params.id)
+        })  
         .catch((error) => {
           console.log(error);
-        })    
-    }
+        })
+      }
     }
 
   myChangeHandler = (event) => {
